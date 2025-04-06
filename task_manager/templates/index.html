@@ -1,1 +1,21 @@
-<h3>Приветствую тебя!!!</h3>
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block title %}Менеджер задач{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>Приветствую Вас!</h1>
+        <p class="lead">Это учебный проект — курса "Python-разработчик" от школы Хекслет.</p>
+        <p class="lead">Task Manager – система управления задачами. Она позволяет ставить задачи, назначать исполнителей и менять их статусы. Для работы с системой требуется регистрация и аутентификация.</p>
+    </div>
+</div>
+
+<!-- Пример формы с Bootstrap стилями -->
+<form method="post" class="form mt-4">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content="Submit" %}
+</form>
+{% endblock %}
