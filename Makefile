@@ -12,3 +12,6 @@ start:
 
 render-start:
 	gunicorn task_manager.wsgi
+
+check:
+	python3 manage.py check

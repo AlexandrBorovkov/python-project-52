@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+import dj_database_url
 
 
 load_dotenv()
@@ -30,6 +31,11 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
 
+LOGIN_REDIRECT_URL = 'index'
+
+LOGOUT_REDIRECT_URL = 'index'
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_bootstrap5',
     'task_manager',
+    'task_manager.users',
+    'task_manager.authentication',
 ]
 
 MIDDLEWARE = [
@@ -78,11 +86,11 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': {}
 }
+
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES["default"].update(db_from_env)
 
 
 # Password validation

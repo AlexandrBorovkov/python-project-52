@@ -11,11 +11,4 @@
         <p class="lead">Task Manager – система управления задачами. Она позволяет ставить задачи, назначать исполнителей и менять их статусы. Для работы с системой требуется регистрация и аутентификация.</p>
     </div>
 </div>
-
-<!-- Пример формы с Bootstrap стилями -->
-<form method="post" class="form mt-4">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    {% bootstrap_button button_type="submit" content="Submit" %}
-</form>
 {% endblock %}
