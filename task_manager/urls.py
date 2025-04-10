@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('task_manager.users.urls')),
     path('', include('task_manager.authentication.urls')),
+    path('statuses/', include('task_manager.statuses.urls')),
 ]

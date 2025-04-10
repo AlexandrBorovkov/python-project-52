@@ -27,6 +27,7 @@ class UserCreateView(View):
             username = form.cleaned_data.get('username')
             messages.success(request, f'Создан аккаунт {username}!')
             return redirect('login')
+        return render(request, 'users/register.html', {'form': form})
 
 
 class UserUpdateView(OwnerRequiredMixin, View):
@@ -47,7 +48,7 @@ class UserUpdateView(OwnerRequiredMixin, View):
             form.save()
             return redirect('list_users')
 
-        return render(request, 'user_update.html', {'form': form, 'user_id': user_id})
+        return render(request, 'users/user_update.html', {'form': form, 'user_id': user_id})
 
 
 class UserDeleteView(OwnerRequiredMixin, View):

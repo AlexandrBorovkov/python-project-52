@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block title %}Менеджер задач{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>Удаление статуса</h1>
+        <p>Вы уверены, что хотите удалить?</p>
+    </div>
+</div>
+
+<form action="{% url 'status_delete' id=status_id %}" method="post" class="form mt-4">
+    {% csrf_token %}
+    {% bootstrap_button button_type="submit" content="Да, удалить" %}
+</form>
+{% endblock %}
