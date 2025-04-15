@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from task_manager.statuses.forms import StatusForm
 from task_manager.statuses.models import Status
 
 
-class StatusListView(View):
+class StatusListView(LoginRequiredMixin, View):
      def get(self, request, *args, **kwargs):
         statuses = Status.objects.all()
         return render(request, 'statuses/list_statuses.html', context={
@@ -14,7 +15,7 @@ class StatusListView(View):
         })
 
 
-class StatusCreateView(View):
+class StatusCreateView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         form = StatusForm()
         return render(request, 'statuses/create.html', {'form': form})
@@ -28,7 +29,7 @@ class StatusCreateView(View):
         return render(request, 'statuses/create.html', {'form': form})
 
 
-class StatusUpdateView(View):
+class StatusUpdateView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         status_id = kwargs.get('id')
         status = Status.objects.get(id=status_id)
@@ -45,7 +46,7 @@ class StatusUpdateView(View):
         return render(request, 'update.html', {'form': form, 'status_id': status_id})
 
 
-class StatusDeleteView(View):
+class StatusDeleteView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         status_id = kwargs.get('id')
         return render(request, 'statuses/delete.html', {'status_id': status_id})

@@ -26,7 +26,7 @@
             <a class="navbar-brand" href="{% url 'list_users' %}">Пользователи</a>
             <a class="navbar-brand" href="{% url 'list_statuses' %}">Статус</a>
             <a class="navbar-brand" href="{% url 'list_users' %}">Метки</a>
-            <a class="navbar-brand" href="{% url 'list_users' %}">Задачи</a>
+            <a class="navbar-brand" href="{% url 'list_tasks' %}">Задачи</a>
             <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
                 <button type="submit">Выход</button>
