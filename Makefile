@@ -14,4 +14,7 @@ render-start:
 	gunicorn task_manager.wsgi
 
 check:
-	python3 manage.py check
+	uv run manage.py check
+
+test:
+	uv run manage.py test

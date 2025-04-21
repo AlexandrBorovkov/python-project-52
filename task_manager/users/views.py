@@ -25,7 +25,7 @@ class UserCreateView(View):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Создан аккаунт {username}!')
+            messages.success(request, f'Пользователь {username} успешно зарегистрирован')
             return redirect('login')
         return render(request, 'users/register.html', {'form': form})
 
@@ -46,6 +46,7 @@ class UserUpdateView(OwnerRequiredMixin, View):
         form = UserForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
+            messages.success(request, f'Пользователь успешно изменен')
             return redirect('list_users')
 
         return render(request, 'users/user_update.html', {'form': form, 'user_id': user_id})
@@ -64,4 +65,5 @@ class UserDeleteView(OwnerRequiredMixin, View):
         user = User.objects.get(id=user_id)
         if user:
             user.delete()
+            messages.success(request, f'Пользователь успешно удален')
         return redirect('list_users')

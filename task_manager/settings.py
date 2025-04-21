@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'task_manager.authentication',
     'task_manager.statuses',
     'task_manager.tasks',
+    'task_manager.labels',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
