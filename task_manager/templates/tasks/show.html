@@ -24,11 +24,11 @@
         </div>
         <div class="row p-1">
           <div class="col">Исполнитель</div>
-          <div class="col">Пока нет</div>
+          <div class="col">{{ task.executor }}</div>
         </div>
         <div class="row p-1">
           <div class="col">Статус</div>
-          <div class="col">{{ task.status }}</div>
+          <div class="col">{{ task.status}}</div>
         </div>
         <div class="row p-1">
           <div class="col">Дата создания</div>
@@ -39,7 +39,7 @@
             <h6>Метки:</h6>
             <ul>
             {% for label in task.label.all %}
-              <li>{{ label.name }}</li>
+              <li>{{ label }}</li>
             {% endfor %}
             </ul>
           </div>

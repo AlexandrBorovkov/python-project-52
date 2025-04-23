@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
-from django.views import View
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import ProtectedError
+from django.shortcuts import redirect, render
+from django.views import View
 
 from task_manager.statuses.forms import StatusForm
 from task_manager.statuses.models import Status
@@ -20,12 +20,12 @@ class StatusCreateView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         form = StatusForm()
         return render(request, 'statuses/create.html', {'form': form})
-    
+
     def post(self, request, *args, **kwargs):
         form = StatusForm(request.POST)
         if form.is_valid():
-            status = form.save()
-            messages.success(request, f'Статус {status.name} успешно создан')
+            form.save()
+            messages.success(request, f'Статус успешно создан')
             return redirect('list_statuses')
         return render(request, 'statuses/create.html', {'form': form})
 
@@ -36,7 +36,7 @@ class StatusUpdateView(LoginRequiredMixin, View):
         status = Status.objects.get(id=status_id)
         form = StatusForm(instance=status)
         return render(request, 'statuses/update.html', {'form': form, 'status_id': status_id})
-    
+
     def post(self, request, *args, **kwargs):
         status_id = kwargs.get('id')
         status = Status.objects.get(id=status_id)
@@ -52,7 +52,7 @@ class StatusDeleteView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         status_id = kwargs.get('id')
         return render(request, 'statuses/delete.html', {'status_id': status_id})
-    
+
     def post(self, request, *args, **kwargs):
         status_id = kwargs.get('id')
         status = Status.objects.get(id=status_id)

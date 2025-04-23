@@ -32,7 +32,7 @@ class StatusCRUDTests(TestCase):
         response = self.client.post(reverse('status_update', args=[status.id]), {
             'name': 'updatedstatus',
         })
-        
+
         status.refresh_from_db()
         self.assertEqual(response.status_code, 302)
         self.assertEqual(status.name, 'updatedstatus')
@@ -40,6 +40,6 @@ class StatusCRUDTests(TestCase):
     def test_delete_status(self):
         status = Status.objects.create(name='teststatus')
         response = self.client.post(reverse('status_delete', args=[status.id]))
-        
+
         self.assertEqual(response.status_code, 302)
         self.assertFalse(Status.objects.filter(name='teststatus').exists())

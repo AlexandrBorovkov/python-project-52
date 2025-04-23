@@ -1,9 +1,8 @@
 import django_filters
 
-
-from task_manager.tasks.models import Task
-from task_manager.statuses.models import Status
 from task_manager.labels.models import Label
+from task_manager.statuses.models import Status
+from task_manager.tasks.models import Task
 from task_manager.users.models import User
 
 

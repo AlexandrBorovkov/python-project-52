@@ -22,7 +22,7 @@ class UserCRUDTests(TestCase):
         })
         self.assertEqual(response.status_code, 302)
         self.assertTrue(User.objects.filter(username='testuser').exists())
-        
+
     def test_update_user(self):
         user = User.objects.create_user(username='testuser', password='testpassword123', email='user@example.com')
         self.client.force_login(user)
