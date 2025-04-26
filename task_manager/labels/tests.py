@@ -7,7 +7,11 @@ from task_manager.users.models import User
 
 class LabelCRUDTests(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username='testuser', password='testpassword123', email='user@example.com')
+        self.user = User.objects.create_user(
+            username='testuser',
+            password='testpassword123',
+            email='user@example.com'
+            )
         self.client.force_login(self.user)
 
     def test_labels_list_view(self):

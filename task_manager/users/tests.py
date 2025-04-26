@@ -6,8 +6,16 @@ from task_manager.users.models import User
 
 class UserCRUDTests(TestCase):
     def test_users_list_view(self):
-        self.user1 = User.objects.create_user(username='testuser1', password='testpassword123', email='user1@example.com')
-        self.user2 = User.objects.create_user(username='testuser2', password='testpassword123', email='user2@example.com')
+        self.user1 = User.objects.create_user(
+            username='testuser1',
+            password='testpassword123',
+            email='user1@example.com'
+            )
+        self.user2 = User.objects.create_user(
+            username='testuser2',
+            password='testpassword123',
+            email='user2@example.com'
+            )
         url = reverse('list_users')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
@@ -24,7 +32,11 @@ class UserCRUDTests(TestCase):
         self.assertTrue(User.objects.filter(username='testuser').exists())
 
     def test_update_user(self):
-        user = User.objects.create_user(username='testuser', password='testpassword123', email='user@example.com')
+        user = User.objects.create_user(
+            username='testuser',
+            password='testpassword123',
+            email='user@example.com'
+            )
         self.client.force_login(user)
         response = self.client.post(reverse('user_update', args=[user.id]), {
             'username': 'updateduser',
@@ -37,7 +49,10 @@ class UserCRUDTests(TestCase):
         self.assertEqual(user.username, 'updateduser')
 
     def test_delete_user(self):
-        user = User.objects.create_user(username='testuser', password='testpassword123')
+        user = User.objects.create_user(
+            username='testuser',
+            password='testpassword123'
+            )
         self.client.force_login(user)
         response = self.client.post(reverse('user_delete', args=[user.id]))
         self.assertEqual(response.status_code, 302)

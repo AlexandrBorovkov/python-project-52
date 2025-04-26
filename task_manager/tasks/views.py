@@ -18,7 +18,11 @@ class TaskListView(LoginRequiredMixin, FilterView):
     context_object_name = 'tasks'
 
     def get_queryset(self):
-        return Task.objects.all().select_related('status', 'author').prefetch_related('label')
+        return (
+            Task.objects.all()
+            .select_related('status', 'author')
+            .prefetch_related('label')
+        )
 
 
 class TaskCreateView(LoginRequiredMixin, View):
@@ -41,7 +45,11 @@ class TaskUpdateView(LoginRequiredMixin, View):
         task_id = kwargs.get('id')
         task = Task.objects.get(id=task_id)
         form = TaskForm(instance=task)
-        return render(request, 'tasks/update.html', {'form': form, 'task_id': task_id})
+        return render(
+            request,
+            'tasks/update.html',
+            {'form': form, 'task_id': task_id}
+            )
 
     def post(self, request, *args, **kwargs):
         task_id = kwargs.get('id')
@@ -51,7 +59,11 @@ class TaskUpdateView(LoginRequiredMixin, View):
             form.save()
             messages.success(request, f'Задача успешно изменена')
             return redirect('list_tasks')
-        return render(request, 'tasks/update.html', {'form': form, 'task_id': task_id})
+        return render(
+            request,
+            'tasks/update.html',
+            {'form': form, 'task_id': task_id}
+            )
 
 
 class TaskDeleteView(LoginRequiredMixin, OwnerRequiredMixin, View):

@@ -7,10 +7,19 @@ from task_manager.users.models import User
 
 class UserForm(forms.ModelForm):
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Подтверждение пароля', widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        label='Подтверждение пароля',
+        widget=forms.PasswordInput
+        )
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'password1', 'password2']
+        fields = [
+            'first_name',
+            'last_name',
+            'username',
+            'password1',
+            'password2'
+            ]
         labels = {
             'first_name': 'Имя',
             'last_name': 'Фамилия',

@@ -39,7 +39,11 @@ class UserUpdateView(OwnerRequiredMixin, View):
         user_id = kwargs.get('id')
         user = User.objects.get(id=user_id)
         form = UserForm(instance=user)
-        return render(request, 'users/user_update.html', {'form': form, 'user_id': user_id})
+        return render(
+            request,
+            'users/user_update.html',
+            {'form': form, 'user_id': user_id}
+            )
 
     def post(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
@@ -50,7 +54,11 @@ class UserUpdateView(OwnerRequiredMixin, View):
             messages.success(request, f'Пользователь успешно изменен')
             return redirect('list_users')
 
-        return render(request, 'users/user_update.html', {'form': form, 'user_id': user_id})
+        return render(
+            request,
+            'users/user_update.html',
+            {'form': form, 'user_id': user_id}
+            )
 
 
 class UserDeleteView(OwnerRequiredMixin, View):
@@ -69,5 +77,8 @@ class UserDeleteView(OwnerRequiredMixin, View):
                 user.delete()
                 messages.success(request, f'Пользователь успешно удален')
         except ProtectedError:
-             messages.error(request, f'Невозможно удалить пользователя, потому что он используется')
+             messages.error(
+                request,
+                f'Невозможно удалить пользователя, потому что он используется'
+                )
         return redirect('list_users')

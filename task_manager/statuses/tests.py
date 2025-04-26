@@ -7,7 +7,11 @@ from task_manager.users.models import User
 
 class StatusCRUDTests(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username='testuser', password='testpassword123', email='user@example.com')
+        self.user = User.objects.create_user(
+            username='testuser',
+            password='testpassword123',
+            email='user@example.com'
+            )
         self.client.force_login(self.user)
 
     def test_statuses_list_view(self):
@@ -28,10 +32,12 @@ class StatusCRUDTests(TestCase):
 
     def test_update_status(self):
         status = Status.objects.create(name='teststatus')
-        response = self.client.post(reverse('status_update', args=[status.id]), {
-            'name': 'updatedstatus',
-        })
-
+        response = self.client.post(
+            reverse('status_update', args=[status.id]),
+            {
+                'name': 'updatedstatus',
+                }
+            )
         status.refresh_from_db()
         self.assertEqual(response.status_code, 302)
         self.assertEqual(status.name, 'updatedstatus')
@@ -39,6 +45,5 @@ class StatusCRUDTests(TestCase):
     def test_delete_status(self):
         status = Status.objects.create(name='teststatus')
         response = self.client.post(reverse('status_delete', args=[status.id]))
-
         self.assertEqual(response.status_code, 302)
         self.assertFalse(Status.objects.filter(name='teststatus').exists())

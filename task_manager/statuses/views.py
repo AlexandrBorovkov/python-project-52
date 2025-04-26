@@ -35,7 +35,11 @@ class StatusUpdateView(LoginRequiredMixin, View):
         status_id = kwargs.get('id')
         status = Status.objects.get(id=status_id)
         form = StatusForm(instance=status)
-        return render(request, 'statuses/update.html', {'form': form, 'status_id': status_id})
+        return render(
+            request,
+            'statuses/update.html',
+            {'form': form, 'status_id': status_id}
+            )
 
     def post(self, request, *args, **kwargs):
         status_id = kwargs.get('id')
@@ -45,7 +49,11 @@ class StatusUpdateView(LoginRequiredMixin, View):
             form.save()
             messages.success(request, f'Статус успешно изменен')
             return redirect('list_statuses')
-        return render(request, 'update.html', {'form': form, 'status_id': status_id})
+        return render(
+            request,
+            'update.html',
+            {'form': form, 'status_id': status_id}
+            )
 
 
 class StatusDeleteView(LoginRequiredMixin, View):
@@ -61,5 +69,8 @@ class StatusDeleteView(LoginRequiredMixin, View):
                 status.delete()
                 messages.success(request, f'Статус успешно удален')
         except ProtectedError:
-             messages.error(request, f'Невозможно удалить статус, потому что он используется')
+             messages.error(
+                request,
+                f'Невозможно удалить статус, потому что он используется'
+                )
         return redirect('list_statuses')

@@ -35,7 +35,11 @@ class LabelUpdateView(LoginRequiredMixin, View):
         label_id = kwargs.get('id')
         label = Label.objects.get(id=label_id)
         form = LabelForm(instance=label)
-        return render(request, 'labels/update.html', {'form': form, 'label_id': label_id})
+        return render(
+            request,
+            'labels/update.html',
+            {'form': form, 'label_id': label_id}
+            )
 
     def post(self, request, *args, **kwargs):
         label_id = kwargs.get('id')
@@ -45,7 +49,11 @@ class LabelUpdateView(LoginRequiredMixin, View):
             form.save()
             messages.success(request, f'Метка успешно изменена')
             return redirect('list_labels')
-        return render(request, 'labels/update.html', {'form': form, 'label_id': label_id})
+        return render(
+            request,
+            'labels/update.html',
+            {'form': form, 'label_id': label_id}
+            )
 
 
 class LabelDeleteView(LoginRequiredMixin, View):
@@ -61,5 +69,8 @@ class LabelDeleteView(LoginRequiredMixin, View):
                 label.delete()
                 messages.success(request, f'Метка успешно удалена')
         except ProtectedError:
-            messages.error(request, f'Невозможно удалить метку, потому что она используется')
+            messages.error(
+                request,
+                f'Невозможно удалить метку, потому что она используется'
+                )
         return redirect('list_labels')
