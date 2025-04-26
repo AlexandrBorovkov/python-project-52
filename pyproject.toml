@@ -20,4 +20,4 @@ dev = [
 ]
 
 [pytest]
-django_settings_module = task_manager.settings
+django_settings_module = "task_manager.settings"
