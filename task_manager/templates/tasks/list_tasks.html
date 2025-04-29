@@ -58,7 +58,7 @@
                     <th>Имя</th>
                     <th>Статус</th>
                     <th>Автор</th>
-                    
+                    <th>Исполнитель</th>
                     <th>Дата создания</th>
                     <th></th>
                 </tr>
@@ -70,6 +70,7 @@
                     <td><a href="{% url 'task_view' task.id %}">{{ task }}</a></td>
                     <td>{{ task.status }}</td>
                     <td>{{ task.author }}</td>
+                    <td>{{ task.executor }}</td>
                     <td>{{ task.created_at }}</td>
                     <td>
                         <a href="{% url 'task_update' task.id %}">Изменить</a>
