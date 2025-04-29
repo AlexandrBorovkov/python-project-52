@@ -29,7 +29,12 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'webserver', 'python-project-52-zv20.onrender.com']
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'webserver',
+    'python-project-52-zv20.onrender.com'
+]
 
 LOGIN_REDIRECT_URL = 'index'
 

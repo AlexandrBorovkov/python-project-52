@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
+
 from task_manager.authentication.forms import LoginForm
 
 

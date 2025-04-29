@@ -14,3 +14,6 @@ class TaskForm(forms.ModelForm):
             'executor': 'Исполнитель',
             'label': 'Метки'
             }
+        widgets = {
+            'label': forms.SelectMultiple(attrs={'class': 'form-select'})
+        }
