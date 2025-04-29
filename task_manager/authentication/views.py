@@ -1,10 +1,11 @@
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import redirect
+from task_manager.authentication.forms import LoginForm
 
 
 class CustomLoginView(LoginView):
     template_name = 'authentication/login.html'
+    form_class = LoginForm
 
     def form_valid(self, form):
         messages.success(self.request, 'Вы залогинены')
