@@ -33,7 +33,7 @@ class TaskCRUDTests(TestCase):
             author=self.user,
             executor=self.executor
             )
-        self.task1.label.add(self.label1, self.label2)
+        self.task1.labels.add(self.label1, self.label2)
         self.task2 = Task.objects.create(
             name='testtask2',
             description='testinfo2',
@@ -41,7 +41,7 @@ class TaskCRUDTests(TestCase):
             author=self.user,
             executor=self.executor
             )
-        self.task2.label.add(self.label1, self.label2)
+        self.task2.labels.add(self.label1, self.label2)
         url = reverse('list_tasks')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
@@ -70,7 +70,7 @@ class TaskCRUDTests(TestCase):
             author=self.user,
             executor=self.executor
             )
-        self.task.label.add(self.label1, self.label2)
+        self.task.labels.add(self.label1, self.label2)
         response = self.client.post(
             reverse('task_update', args=[self.task.id]),
             {
@@ -94,7 +94,7 @@ class TaskCRUDTests(TestCase):
             author=self.user,
             executor=self.executor
             )
-        self.task.label.add(self.label1, self.label2)
+        self.task.labels.add(self.label1, self.label2)
         response = self.client.post(reverse('task_delete', args=[self.task.id]))
         self.assertEqual(response.status_code, 302)
         self.assertFalse(Task.objects.filter(name='testtask').exists())
@@ -124,7 +124,7 @@ class TaskFilterTest(TestCase):
             author=self.user,
             executor=self.executor
             )
-        self.task1.label.add(self.label1)
+        self.task1.labels.add(self.label1)
         self.task2 = Task.objects.create(
             name='testtask2',
             description='testinfo2',
@@ -132,7 +132,7 @@ class TaskFilterTest(TestCase):
             author=self.user,
             executor=self.executor
             )
-        self.task2.label.add(self.label2)
+        self.task2.labels.add(self.label2)
 
     def test_status_filter(self):
         data = {'status': self.status1.id}
