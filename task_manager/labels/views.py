@@ -9,7 +9,7 @@ from task_manager.labels.models import Label
 
 
 class LabelListView(LoginRequiredMixin, View):
-     def get(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         labels = Label.objects.all()
         return render(request, 'labels/list_labels.html', context={
             'labels': labels,
@@ -25,7 +25,7 @@ class LabelCreateView(LoginRequiredMixin, View):
         form = LabelForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, f'Метка успешно создана')
+            messages.success(request, 'Метка успешно создана')
             return redirect('list_labels')
         return render(request, 'labels/create.html', {'form': form})
 
@@ -47,7 +47,7 @@ class LabelUpdateView(LoginRequiredMixin, View):
         form = LabelForm(request.POST, instance=label)
         if form.is_valid():
             form.save()
-            messages.success(request, f'Метка успешно изменена')
+            messages.success(request, 'Метка успешно изменена')
             return redirect('list_labels')
         return render(
             request,
@@ -67,10 +67,10 @@ class LabelDeleteView(LoginRequiredMixin, View):
         try:
             if label:
                 label.delete()
-                messages.success(request, f'Метка успешно удалена')
+                messages.success(request, 'Метка успешно удалена')
         except ProtectedError:
             messages.error(
                 request,
-                f'Невозможно удалить метку, потому что она используется'
+                'Невозможно удалить метку, потому что она используется'
                 )
         return redirect('list_labels')

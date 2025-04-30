@@ -9,7 +9,7 @@ from task_manager.statuses.models import Status
 
 
 class StatusListView(LoginRequiredMixin, View):
-     def get(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         statuses = Status.objects.all()
         return render(request, 'statuses/list_statuses.html', context={
             'statuses': statuses,
@@ -25,7 +25,7 @@ class StatusCreateView(LoginRequiredMixin, View):
         form = StatusForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, f'Статус успешно создан')
+            messages.success(request, 'Статус успешно создан')
             return redirect('list_statuses')
         return render(request, 'statuses/create.html', {'form': form})
 
@@ -47,7 +47,7 @@ class StatusUpdateView(LoginRequiredMixin, View):
         form = StatusForm(request.POST, instance=status)
         if form.is_valid():
             form.save()
-            messages.success(request, f'Статус успешно изменен')
+            messages.success(request, 'Статус успешно изменен')
             return redirect('list_statuses')
         return render(
             request,
@@ -67,10 +67,10 @@ class StatusDeleteView(LoginRequiredMixin, View):
         try:
             if status:
                 status.delete()
-                messages.success(request, f'Статус успешно удален')
+                messages.success(request, 'Статус успешно удален')
         except ProtectedError:
-             messages.error(
+            messages.error(
                 request,
-                f'Невозможно удалить статус, потому что он используется'
+                'Невозможно удалить статус, потому что он используется'
                 )
         return redirect('list_statuses')

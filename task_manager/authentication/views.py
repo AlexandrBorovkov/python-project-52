@@ -16,6 +16,7 @@ class CustomLoginView(LoginView):
         messages.error(self.request, 'Неверное имя пользователя или пароль')
         return super().form_invalid(form)
 
+
 class CustomLogoutView(LogoutView):
     def dispatch(self, request, *args, **kwargs):
         messages.info(request, 'Вы разлогинены')

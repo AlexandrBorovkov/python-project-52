@@ -36,7 +36,7 @@ class TaskCreateView(LoginRequiredMixin, View):
         if form.is_valid():
             form.instance.author = User.objects.get(pk=request.user.pk)
             form.save()
-            messages.success(request, f'Задача успешно создана')
+            messages.success(request, 'Задача успешно создана')
             return redirect('list_tasks')
         return render(request, 'tasks/create.html', {'form': form})
 
@@ -58,7 +58,7 @@ class TaskUpdateView(LoginRequiredMixin, View):
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
-            messages.success(request, f'Задача успешно изменена')
+            messages.success(request, 'Задача успешно изменена')
             return redirect('list_tasks')
         return render(
             request,
@@ -80,7 +80,7 @@ class TaskDeleteView(LoginRequiredMixin, OwnerRequiredMixin, View):
         task = Task.objects.get(id=task_id)
         if task:
             task.delete()
-            messages.success(request, f'Задача успешно удалена')
+            messages.success(request, 'Задача успешно удалена')
         return redirect('list_tasks')
 
 

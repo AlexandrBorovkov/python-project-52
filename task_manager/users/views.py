@@ -9,7 +9,7 @@ from task_manager.users.models import User
 
 
 class UsersListView(View):
-     def get(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         users = User.objects.all()
         return render(request, 'users/list_users.html', context={
             'users': users,
@@ -26,7 +26,7 @@ class UserCreateView(View):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Пользователь успешно зарегистрирован')
+            messages.success(request, 'Пользователь успешно зарегистрирован')
             return redirect('login')
         return render(request, 'users/register.html', {'form': form})
 
@@ -51,7 +51,7 @@ class UserUpdateView(OwnerRequiredMixin, View):
         form = UserForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            messages.success(request, f'Пользователь успешно изменен')
+            messages.success(request, 'Пользователь успешно изменен')
             return redirect('list_users')
 
         return render(
@@ -75,10 +75,10 @@ class UserDeleteView(OwnerRequiredMixin, View):
         try:
             if user:
                 user.delete()
-                messages.success(request, f'Пользователь успешно удален')
+                messages.success(request, 'Пользователь успешно удален')
         except ProtectedError:
-             messages.error(
+            messages.error(
                 request,
-                f'Невозможно удалить пользователя, потому что он используется'
+                'Невозможно удалить пользователя, потому что он используется'
                 )
         return redirect('list_users')
