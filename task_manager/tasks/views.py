@@ -21,7 +21,7 @@ class TaskListView(LoginRequiredMixin, FilterView):
         return (
             Task.objects.all()
             .select_related('status', 'author')
-            .prefetch_related('label')
+            .prefetch_related('labels')
             .order_by('created_at')
         )
 
