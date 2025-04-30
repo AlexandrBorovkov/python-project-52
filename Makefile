@@ -4,17 +4,19 @@ install:
 build:
 	./build.sh
 
-lint:
-	uv run ruff check
-
 start:
 	uv run python manage.py runserver
 
 render-start:
 	gunicorn task_manager.wsgi
 
-check:
+selfcheck:
 	uv run manage.py check
+
+lint:
+	uv run ruff check
 
 test:
 	uv run manage.py test
+
+check: selfcheck lint test

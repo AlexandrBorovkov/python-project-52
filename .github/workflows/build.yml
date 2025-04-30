@@ -1,0 +1,24 @@
+name: Build
+on: 
+  - push
+  - pull_request
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.13"
+      - name: Install dependencies
+        run: |
+          pip install uv
+          make install
+      - name: Run linter and pytest
+        run: |
+          make check
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
