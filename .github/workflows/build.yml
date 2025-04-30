@@ -31,7 +31,6 @@ jobs:
           DEBUG: ${{ secrets.DEBUG }}
         run: |
           python manage.py migrate
-        run: |
           make check
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
