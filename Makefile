@@ -19,4 +19,8 @@ lint:
 test:
 	uv run manage.py test
 
-check: selfcheck lint test
+test-cov:
+	uv run manage.py test --keepdb --noinput --cov=myapp --cov-report=xml
+
+check:
+	selfcheck lint test-cov
