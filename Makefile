@@ -17,7 +17,8 @@ test:
 	uv run manage.py test
 
 test-cov:
-	uv run manage.py test --keepdb --noinput --cov=task_manager --cov-report=xml
+	uv run coverage run manage.py test --keepdb --noinput
+	uv run coverage xml -o coverage.xml --include="*"
 
 selfcheck:
 	uv run manage.py check
