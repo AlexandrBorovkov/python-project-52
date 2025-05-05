@@ -19,5 +19,4 @@ test:
 selfcheck:
 	uv run manage.py check
 
-check:
-	selfcheck lint
+check: selfcheck lint
