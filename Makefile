@@ -17,7 +17,10 @@ test:
 	uv run manage.py test
 
 test-cov:
-	uv run manage.py test --keepdb --noinput --cov=myapp --cov-report=xml
+	uv run manage.py test --keepdb --noinput --cov=task_manager --cov-report=xml
+
+selfcheck:
+	uv run manage.py check
 
 check:
-	lint test-cov
+	selfcheck lint test-cov
