@@ -136,36 +136,36 @@ class TaskFilterTest(TestCase):
 
     def test_status_filter(self):
         data = {'status': self.status1.id}
-        filter = TaskFilter(data=data, queryset=Task.objects.all()).qs
-        self.assertEqual(filter.count(), 1)
-        self.assertEqual(filter.first().name, 'testtask1')
+        filter_data = TaskFilter(data=data, queryset=Task.objects.all()).qs
+        self.assertEqual(filter_data.count(), 1)
+        self.assertEqual(filter_data.first().name, 'testtask1')
 
     def test_executor_filter(self):
         data = {'executor': self.executor.id}
-        filter = TaskFilter(data=data, queryset=Task.objects.all()).qs
-        self.assertEqual(filter.count(), 2)
-        self.assertIn(self.task1, filter)
-        self.assertIn(self.task2, filter)
+        filter_data = TaskFilter(data=data, queryset=Task.objects.all()).qs
+        self.assertEqual(filter_data.count(), 2)
+        self.assertIn(self.task1, filter_data)
+        self.assertIn(self.task2, filter_data)
 
     def test_label_filter(self):
         data = {'label': self.label2.id}
-        filter = TaskFilter(data=data, queryset=Task.objects.all()).qs
-        self.assertEqual(filter.count(), 1)
-        self.assertEqual(filter.first().name, 'testtask2')
+        filter_data = TaskFilter(data=data, queryset=Task.objects.all()).qs
+        self.assertEqual(filter_data.count(), 1)
+        self.assertEqual(filter_data.first().name, 'testtask2')
 
     def test_my_tasks_filter(self):
         data = {'my_tasks': True}
         request = self.client.get('/tasks/', data)
         request.user = self.user
-        filter = TaskFilter(
+        filter_data = TaskFilter(
             data=data,
             queryset=Task.objects.all(),
             request=request
             ).qs
-        self.assertEqual(filter.count(), 2)
-        self.assertIn(self.task1, filter)
-        self.assertIn(self.task2, filter)
+        self.assertEqual(filter_data.count(), 2)
+        self.assertIn(self.task1, filter_data)
+        self.assertIn(self.task2, filter_data)
 
     def test_no_filters(self):
-        filter = TaskFilter(data={}, queryset=Task.objects.all()).qs
-        self.assertEqual(filter.count(), 2)
+        filter_data = TaskFilter(data={}, queryset=Task.objects.all()).qs
+        self.assertEqual(filter_data.count(), 2)

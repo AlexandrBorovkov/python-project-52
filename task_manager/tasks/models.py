@@ -13,7 +13,7 @@ class Task(models.Model):
         )
     description = models.TextField(
         max_length=1000,
-        null=True
+        blank=True
         )
     status = models.ForeignKey(
         Status,

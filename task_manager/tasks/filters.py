@@ -25,6 +25,7 @@ class TaskFilter(django_filters.FilterSet):
         field_name='author',
         method='filter_my_tasks',
         widget=forms.CheckboxInput,
+        label='Только свои задачи'
     )
 
     def filter_my_tasks(self, queryset, name, value):
