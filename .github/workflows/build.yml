@@ -36,12 +36,3 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-
-- name: Run tests with coverage
-  run: |
-    pip install pytest pytest-cov
-    python manage.py test --keepdb --noinput --cov=myapp --cov-report=xml
-- name: Analyze with SonarQube
-  run: |
-    sonar-scanner -Dsonar.projectKey=myproject -Dsonar.login=$SONAR_TOKEN
