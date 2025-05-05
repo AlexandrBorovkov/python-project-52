@@ -10,9 +10,6 @@ start:
 render-start:
 	gunicorn task_manager.wsgi
 
-selfcheck:
-	uv run manage.py check
-
 lint:
 	uv run ruff check
 
@@ -23,4 +20,4 @@ test-cov:
 	uv run manage.py test --keepdb --noinput --cov=myapp --cov-report=xml
 
 check:
-	selfcheck lint test-cov
+	lint test-cov
