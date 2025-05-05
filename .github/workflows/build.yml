@@ -30,6 +30,7 @@ jobs:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           DEBUG: ${{ secrets.DEBUG }}
         run: |
+          uv add coverage
           make check
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
