@@ -16,23 +16,23 @@ Task Manager is a task management system. It allows you to set tasks, assign per
 
 ### The main objectives of the project: ###
 #### Database Design ####
-    Creating data models using Django ORM.
-    Description of relationships between entities (One-to-Many, Many-to-Many).
+Creating data models using Django ORM.
+Description of relationships between entities (One-to-Many, Many-to-Many).
 #### Resource routing ####
-    Configuring URLs for typical CRUD operations.
-    Unification and simplification of work with operations of creation, reading, updating and deletion of data.
+Configuring URLs for typical CRUD operations.
+Unification and simplification of work with operations of creation, reading, updating and deletion of data.
 #### Forms and validation ####
-    Creating forms for entering and editing data.
-    Using Django's built-in mechanisms to generate forms and output errors.
+Creating forms for entering and editing data.
+Using Django's built-in mechanisms to generate forms and output errors.
 #### Authorization and authentication ####
-    Implementation of user registration and login mechanisms.
-    Access rights management and control of user actions.
+Implementation of user registration and login mechanisms.
+Access rights management and control of user actions.
 #### Data filtering ####
-    Creates forms for filtering tasks.
-    Using libraries to simplify the filtering process.
+Creates forms for filtering tasks.
+Using libraries to simplify the filtering process.
 #### Monitoring and error notifications ####
-    Integration of the Roll bar service for error collection and notification.
-    Setting up notifications in Slack, via email, and other channels.
+Integration of the Roll bar service for error collection and notification.
+Setting up notifications in Slack, via email, and other channels.
 
 ---
 
