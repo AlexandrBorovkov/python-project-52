@@ -4,6 +4,9 @@ install:
 build:
 	./build.sh
 
+migrate:
+	uv run manage.py migrate
+
 start:
 	uv run python manage.py runserver
 
